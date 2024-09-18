@@ -1,0 +1,26 @@
+# Ignore everything
+*
+
+# Allow specific files
+!EDA.py
+!Inventory_optimization_rolling_mean_xgb.py
+!inventory_optimization_xgb.py
+
+# Allow the input folder
+!input/
+
+# Ignore everything inside the InventoryForecasting folder
+InventoryForecasting/*
+# Ignore hidden directories and files
+.DS_Store
+.idea/
+.gitconfig
+# Add other folders to ignore
+../../MD\ API\ LOAD\ TEST/
+../../Startup_new/
+../../startup2/
+../../../.*
+../../../Applications/
+../../../Documents/
+../../../Downloads/
+../../../Library/
