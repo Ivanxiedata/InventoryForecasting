@@ -152,6 +152,38 @@ def visualize_seasonality_month_and_year(df):
 
 
 
+def average_monthly_sales_per_store(df):
+    # Group by year, month, and store, then compute mean sales
+    # Group by both month and store, then calculate the average sales
+    monthly_seasonality = df.groupby([df['date'].dt.month, 'store'])['sales'].mean().reset_index()
+
+    traces = []
+    for store in monthly_seasonality['store'].unique():
+        store_sales = monthly_seasonality[monthly_seasonality['store'] == store]
+
+        trace = go.Scatter(
+            x=store_sales['date'],  # Use month for x-axis
+            y=store_sales['sales'],  # Average sales per store for y-axis
+            mode='lines+markers',
+            name=f'Store {store}',  # Label with store number
+            line=dict(width=3)
+        )
+        traces.append(trace)
+
+    layout = go.Layout(
+        autosize=True,
+        title='Seasonality - Average Sales per Month by Store',
+        xaxis=dict(title='Month'),
+        yaxis=dict(title='Average Sales'),
+        showlegend=True
+    )
+
+    fig = go.Figure(data=traces, layout=layout)
+    iplot(fig)
+
+
+
+
 # Pipeline Execution
 def sales_analysis_pipeline(file_path):
     # Step 1: Load data
@@ -178,13 +210,16 @@ def sales_analysis_pipeline(file_path):
     # visualize_monthly_sales(df)
 
     # Step 8: Visualize seasonality by month
-    visualize_seasonality_month_only(df)
+    # visualize_seasonality_month_only(df)
+    #
+    # # Step 9: Visualize yearly sales
+    # visualize_year_sale(df)
+    #
+    # # Step 10: Visualize month and year seaonality
+    # visualize_seasonality_month_and_year(df)
 
-    # Step 9: Visualize yearly sales
-    visualize_year_sale(df)
-
-    # Step 10: Visualize month and year seaonality
-    visualize_seasonality_month_and_year(df)
+    # Step 11: Visualize all stores average monthly sales
+    average_monthly_sales_per_store(df)
 
 
 # Run the pipeline

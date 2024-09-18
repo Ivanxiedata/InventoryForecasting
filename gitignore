@@ -24,3 +24,6 @@ InventoryForecasting/*
 ../../../Documents/
 ../../../Downloads/
 ../../../Library/
+# Ignore JetBrains IDE project files
+.idea/
+
