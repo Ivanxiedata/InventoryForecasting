@@ -1,0 +1,2 @@
+ 1. Use all data up til 01/2017, predicts on  02/2017, then predict 8 weeks.
+2. exponential smoothing - TIME SERIES MODEL (add seasonality)
